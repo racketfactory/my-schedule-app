@@ -9,12 +9,33 @@ body {
 }
 
 header {
-    background-color: #4CAF50; /* 초록색 계열 */
+    /* 기존 초록색 배경. 이미지 로딩 실패 시 대비 */
+    background-color: #4CAF50;
     color: white;
     padding: 1.5em 0;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+    /* --- 이미지 배경 및 혼합 모드 설정 --- */
+    background-image: url('header_background.png'); /* ◀ 준비하신 이미지 파일명으로 변경하세요! */
+    background-size: cover; /* 헤더 영역에 맞춰 이미지를 확대/축소하여 채움 */
+    background-repeat: no-repeat; /* 이미지가 반복되지 않도록 설정 */
+    background-position: center; /* 이미지를 헤더 중앙에 배치 */
+    
+    /* 이미지 위에 텍스트가 잘 보이도록 배경을 약간 어둡게 처리 (선택 사항) */
+    /* linear-gradient를 사용하여 이미지 위에 반투명한 검정색 레이어를 덮습니다. */
+    background-blend-mode: overlay; /* 또는 multiply, darken 등 시도해보세요 */
+    /* background-color: rgba(0,0,0,0.3); /* 만약 background-blend-mode가 잘 안되면 이 속성을 추가하여 투명도 조절 */
 }
+
+/* 제목 텍스트 스타일 (가독성 향상) - header 요소 내의 h1 태그에 적용 */
+header h1 {
+    margin: 0; /* h1 기본 마진 제거 */
+    font-size: 2.2em; /* 제목 폰트 크기 조정 (원하는 대로 조절) */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 텍스트에 그림자 추가 (가독성 매우 중요) */
+    /* font-family: '나눔고딕', sans-serif; /* 특정 웹 폰트를 사용하고 싶다면 추가 (나중에 설명) */
+}
+
 
 main {
     display: flex;
@@ -108,269 +129,4 @@ main {
 }
 
 .calendar-day.empty {
-    background-color: #f9f9f9;
-    border: 1px dashed #eee;
-    color: #ccc;
-    cursor: default;
-}
-
-/* 일정 및 수입/지출 상세 섹션 */
-#daily-details-section {
-    flex: 2; /* 캘린더보다 더 많은 공간 차지 */
-    min-width: 500px; /* 최소 너비 설정 */
-    padding: 20px;
-}
-
-#selectedDate {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #4CAF50;
-    padding-bottom: 10px;
-}
-
-.input-area {
-    background-color: #f9f9f9;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.input-area h3 {
-    color: #4CAF50;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.2em;
-}
-
-.input-field {
-    width: calc(100% - 22px); /* 패딩 고려 */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.input-area button {
-    background-color: #007bff; /* 파란색 계열 */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    width: 100%;
-}
-
-.input-area button:hover {
-    background-color: #0056b3;
-}
-
-/* 상세 목록 */
-.details-list h3 {
-    color: #4CAF50;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #ddd;
-    padding-bottom: 5px;
-}
-
-.details-list ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.details-list ul li {
-    background-color: #e9ecef;
-    border: 1px solid #dee2e6;
-    margin-bottom: 8px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.95em;
-}
-
-.details-list ul li .delete-btn,
-.details-list ul li .edit-btn {
-    background: none;
-    border: none;
-    color: #dc3545; /* 삭제 버튼 색상 */
-    font-size: 0.9em;
-    cursor: pointer;
-    margin-left: 10px;
-    padding: 5px;
-    border-radius: 3px;
-    transition: background-color 0.2s ease;
-}
-
-.details-list ul li .edit-btn {
-    color: #ffc107; /* 수정 버튼 색상 */
-}
-
-.details-list ul li .delete-btn:hover {
-    background-color: #f8d7da;
-}
-
-.details-list ul li .edit-btn:hover {
-    background-color: #fff3cd;
-}
-
-/* 일정 타입별 색상 */
-.event-personal {
-    background-color: #ffe0b2; /* 연한 주황 */
-    border-left: 5px solid #ff9800; /* 주황색 막대 */
-}
-
-.event-business {
-    background-color: #bbdefb; /* 연한 파랑 */
-    border-left: 5px solid #2196F3; /* 파란색 막대 */
-}
-
-/* 수입/지출 타입별 색상 */
-.transaction-income {
-    background-color: #d4edda; /* 연한 초록 */
-    border-left: 5px solid #28a745; /* 진한 초록색 막대 */
-}
-
-.transaction-expense {
-    background-color: #f8d7da; /* 연한 빨강 */
-    border-left: 5px solid #dc3545; /* 진한 빨간색 막대 */
-}
-
-/* 총 수입/지출 표시 */
-.details-list p {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-top: 10px;
-    padding: 5px 0;
-    border-top: 1px dashed #eee;
-}
-
-#totalIncome {
-    color: #28a745; /* 초록색 */
-}
-
-#totalExpense {
-    color: #dc3545; /* 빨간색 */
-}
-
-#netBalance {
-    color: #007bff; /* 파란색 */
-    font-size: 1.2em;
-}
-
-/* 작은 화면 대응 (반응형) */
-@media (max-width: 768px) {
-    main {
-        flex-direction: column; /* 세로로 쌓이도록 */
-        padding: 10px;
-    }
-
-    #calendar-section {
-        border-right: none; /* 구분선 제거 */
-        border-bottom: 1px solid #eee; /* 하단 구분선 추가 */
-        min-width: unset; /* 최소 너비 제한 해제 */
-    }
-
-    #daily-details-section {
-        min-width: unset; /* 최소 너비 제한 해제 */
-    }
-
-    .input-field {
-        width: 100%;
-    }
-}
-
-/* 일정이 있는 날짜에 표시될 점 */
-/* 기존 .has-entry-indicator는 기본 크기와 위치를 담당 */
-.calendar-day .has-entry-indicator {
-    position: absolute;
-    bottom: 5px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    z-index: 10;
-}
-
-/* 개인 일정 점 (주황색) */
-.calendar-day .indicator-personal-event {
-    background-color: #ff9800; /* 개인 일정 색상과 동일 */
-    left: 40%; /* 두 개의 점이 겹치지 않도록 위치 조정 */
-    transform: translateX(-50%); /* 중앙 정렬 */
-}
-
-/* 업무 일정 점 (파란색) */
-.calendar-day .indicator-business-event {
-    background-color: #2196F3; /* 업무 일정 색상과 동일 */
-    left: 60%; /* 두 개의 점이 겹치지 않도록 위치 조정 */
-    transform: translateX(-50%); /* 중앙 정렬 */
-}
-
-
-/* 툴팁 스타일 */
-.calendar-day .tooltip-content {
-    visibility: hidden; /* 기본적으로 숨김 */
-    width: 150px; /* 툴팁 너비 */
-    background-color: #333; /* 배경색 */
-    color: #fff; /* 글자색 */
-    text-align: left;
-    border-radius: 6px;
-    padding: 8px 10px;
-    position: absolute;
-    z-index: 100; /* 다른 요소 위에 표시 */
-    bottom: 30px; /* 점 위쪽에 위치 */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0; /* 투명도 0 */
-    transition: opacity 0.3s, visibility 0.3s; /* 부드러운 효과 */
-    font-size: 0.8em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-/* 툴팁 화살표 */
-.calendar-day .tooltip-content::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent; /* 화살표 색상 */
-}
-
-/* 마우스 오버 시 툴팁 보이기 */
-.calendar-day:hover .tooltip-content {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* 내용이 많을 경우 스크롤바 */
-.tooltip-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 100px; /* 최대 높이 설정 */
-    overflow-y: auto; /* 내용이 넘치면 스크롤바 생성 */
-}
-.tooltip-content li {
-    padding: 2px 0;
-    border-bottom: 1px dashed rgba(255,255,255,0.2);
-    white-space: nowrap; /* 줄바꿈 방지 */
-    overflow: hidden;
-    text-overflow: ellipsis; /* 내용이 넘치면 ...으로 표시 */
-}
-.tooltip-content li:last-child {
-    border-bottom: none;
-}
-.tooltip-content .event-tooltip-personal { color: #ffe0b2; } /* 개인 일정 글자색 */
-.tooltip-content .event-tooltip-business { color: #bbdefb; } /* 업무 일정 글자색 */
-.tooltip-content .transaction-tooltip-income { color: #d4edda; } /* 수입 글자색 */
-.tooltip-content .transaction-tooltip-expense { color: #f8d7da; } /* 지출 글자색 */
+    background-color: #f
