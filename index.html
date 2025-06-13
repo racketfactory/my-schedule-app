@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 일정 및 가계부 앱</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>나만의 일정 및 가계부</h1>
+    </header>
+
+    <main>
+        <section id="calendar-section">
+            <div class="calendar-nav">
+                <button id="prevMonth">이전 달</button>
+                <h2 id="currentMonthYear"></h2>
+                <button id="nextMonth">다음 달</button>
+            </div>
+            <div id="calendar-grid">
+                <div class="day-header">일</div>
+                <div class="day-header">월</div>
+                <div class="day-header">화</div>
+                <div class="day-header">수</div>
+                <div class="day-header">목</div>
+                <div class="day-header">금</div>
+                <div class="day-header">토</div>
+                </div>
+        </section>
+
+        <section id="daily-details-section">
+            <h2 id="selectedDate"></h2>
+            
+            <div class="input-area">
+                <h3>새 일정 추가</h3>
+                <input type="date" id="eventDate" class="input-field">
+                <select id="eventType" class="input-field">
+                    <option value="personal">개인 (아이들)</option>
+                    <option value="business">업무 (부동산)</option>
+                </select>
+                <input type="text" id="eventContent" placeholder="일정 내용을 입력하세요" class="input-field">
+                <button id="addEvent">일정 추가</button>
+            </div>
+
+            <div class="input-area">
+                <h3>새 수입/지출 추가</h3>
+                <input type="date" id="transactionDate" class="input-field">
+                <select id="transactionType" class="input-field">
+                    <option value="income">수입</option>
+                    <option value="expense">지출</option>
+                </select>
+                <input type="text" id="transactionContent" placeholder="항목 내용을 입력하세요 (예: 점심 식사, 월세)" class="input-field">
+                <input type="number" id="transactionAmount" placeholder="금액을 입력하세요" class="input-field">
+                <button id="addTransaction">내역 추가</button>
+            </div>
+
+            <div class="details-list">
+                <h3>오늘의 일정</h3>
+                <ul id="eventList">
+                    </ul>
+
+                <h3>오늘의 수입/지출</h3>
+                <ul id="transactionList">
+                    </ul>
+                <p>총 수입: <span id="totalIncome">0</span>원</p>
+                <p>총 지출: <span id="totalExpense">0</span>원</p>
+                <p>순 이익: <span id="netBalance">0</span>원</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
